@@ -32,4 +32,4 @@ Improve your cardio. I only crave pain and runner's high; so should you. Don't w
 3. Open your terminal, navigate to the folder, and run:
 
    ```bash
-   python my_favorite_workout.py
+   python TheWorkout.py
