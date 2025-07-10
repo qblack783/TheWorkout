@@ -1,0 +1,65 @@
+import time
+
+def countdown(minutes):
+    seconds = minutes * 60
+    while seconds > 0:
+        mins, secs = divmod(seconds, 60)
+        print(f" {mins:02d}:{secs:02d} remaining", end='\r')
+        time.sleep(1)
+        seconds -= 1
+    print("\n Time's up!")
+
+def treadmill_workout():
+    print("\n Treadmill Running: 30 mins")
+    print("Cycle: 5 mins ALL OUT, 1 min recovery. Repeat for 30 mins.")
+    cycles = 30 // 6  # Each cycle is 6 mins
+    for i in range(1, cycles + 1):
+        print(f"\nCycle {i}: Go all out for 5 mins!")
+        countdown(5)
+        print("Recover for 1 min.")
+        countdown(1)
+    feelings = input("\n How do you feel after the treadmill? ")
+    return {"Treadmill": feelings}
+
+def rower_workout():
+    print("\n Rower Circuit: 20 mins")
+    print("200m Row (175–220w), 20 KB swings, 10 mountain climbers.")
+    print("Repeat for 20 mins. Rest if needed.")
+    print("Start now!")
+    countdown(20)
+    feelings = input("\n How do you feel after the rower? ")
+    return {"Rower": feelings}
+
+def lifting_floor_workout():
+    print("\n Lifting/Floor: 20 mins")
+    print("Rotate through exercises:")
+    print("- Chest Press, Chest Fly, Walking Lunges, Conventional Deadlifts.")
+    weights = {}
+    for exercise in ["Chest Press", "Chest Fly", "Walking Lunges", "Conventional Deadlifts"]:
+        weight = input(f"Enter weight used for {exercise}: ")
+        weights[exercise] = weight
+    print("\nRotate through each exercise for 20 mins. Rest 30 sec – 1 min between rotations.")
+    countdown(20)
+    feelings = input("\n How do you feel after the lifting/floor circuit? ")
+    return weights, {"Lifting/Floor": feelings}
+
+def generate_favorite_workout():
+    print("\n Your Favorite Workout")
+    treadmill_notes = treadmill_workout()
+    rower_notes = rower_workout()
+    lift_weights, lifting_notes = lifting_floor_workout()
+
+    print("\n SESSION SUMMARY")
+    print("Weights Used:")
+    for exercise, weight in lift_weights.items():
+        print(f"- {exercise}: {weight} lbs")
+
+    print("\nHow you felt:")
+    for notes in [treadmill_notes, rower_notes, lifting_notes]:
+        for circuit, feeling in notes.items():
+            print(f"- {circuit}: {feeling}")
+
+    print("\n Let's go! Log this and crush your next one!")
+
+if __name__ == "__main__":
+    generate_theworkout()
